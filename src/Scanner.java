@@ -63,7 +63,8 @@ public class Scanner {
                             System.out.println("Not Reachable: " + output);
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        System.out.println("InetAddress.getByAddress(ip) fail");
+//                        e.printStackTrace();
                     }
                 }
 
