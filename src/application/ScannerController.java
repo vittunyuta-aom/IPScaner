@@ -136,7 +136,7 @@ public class ScannerController extends TimerTask implements Initializable{
 
     @Override
     public void run() {
-//        scanner.scan();
+        scanner.scan();
         System.out.println("-------------------------------");
     }
 	
