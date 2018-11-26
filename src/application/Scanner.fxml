@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -9,27 +8,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
-<<<<<<< HEAD:src/Scanner.fxml
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScannerController">
-=======
-<?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="440.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="gui.ScannerController">
->>>>>>> 58a63d56729acec0fdc07569805d976ad6730695:src/gui/Scanner.fxml
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ScannerController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="110.0" style="-fx-background-color: #fff;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-<<<<<<< HEAD:src/Scanner.fxml
             <Button fx:id="localDeviceButton" mnemonicParsing="false" onAction="#LocalDevicesPage" prefHeight="314.0" prefWidth="110.0" style="-fx-background-color: #19A5A0;">
                <graphic>
                   <ImageView fitHeight="74.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/local.png" />
+                        <Image url="@../../image/local.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -43,27 +36,13 @@
                <graphic>
                   <ImageView fitHeight="74.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/connected.png" />
+                        <Image url="@../../image/connected.png" />
                      </image>
                   </ImageView>
                </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-=======
-            <Button fx:id="localDeviceButton" layoutX="-2.0" mnemonicParsing="false" onAction="#LocalDevicesPage" prefHeight="220.0" prefWidth="94.0" style="-fx-background-color: #19A5A0;" />
-            <ImageView fitHeight="74.0" fitWidth="56.0" layoutX="17.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/local.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="ConnectedButton" layoutX="-2.0" layoutY="220.0" mnemonicParsing="false" onAction="#ConnectedPage" prefHeight="220.0" prefWidth="94.0" style="-fx-background-color: #19A5A0;" />
-            <ImageView fitHeight="74.0" fitWidth="56.0" layoutX="18.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/connected.png" />
-               </image>
-            </ImageView>
->>>>>>> 58a63d56729acec0fdc07569805d976ad6730695:src/gui/Scanner.fxml
          </children>
       </AnchorPane>
       <AnchorPane fx:id="localPane" layoutX="111.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="690.0" style="-fx-background-color: #fff;">

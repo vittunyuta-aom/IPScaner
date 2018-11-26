@@ -1,4 +1,4 @@
-package gui;
+package application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +11,9 @@ public class MainApplication extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("gui/Scanner.fxml"));
+			Parent root = (Parent)FXMLLoader.load(getClass().getResource("Scanner.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("gui/application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
