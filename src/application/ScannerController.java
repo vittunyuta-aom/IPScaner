@@ -91,13 +91,13 @@ public class ScannerController extends TimerTask implements Initializable{
      		
      		int index = 1;
      		for (ScannedDevice lists : listPlayer) {
-     			timeStart = new Text(String.format(" %2d. %-14s  %4d" );
+//     			timeStart = new Text(String.format(" %2d. %-14s  %4d" );
 //     			timeStart.setFont(Font.font("Monospace",FontWeight.BOLD,20));
 //     			Background background = new Background(new BackgroundFill(Color.DARKORANGE, CornerRadii.EMPTY, Insets.EMPTY));
 //     			timeStart.setBackground(background);
 //     			timeStart.setAlignment(Pos.TOP_CENTER);
 //     			vBox.setBackground(background);
-     			vBox.getChildren().addAll(userLabel);
+//     			vBox.getChildren().addAll(userLabel);
      			
      			index++;
      		}
