@@ -36,7 +36,7 @@ public class ScannedDevice {
     }
 
     private void calculateCurrentDuration(){
-        duration = Math.abs(lastSeen.getTime() - firstSeen.getTime());
+        duration = Math.abs(lastSeen.getTime() - firstSeen.getTime()) / 1000;
     }
 
     public String getIpAddress() {
