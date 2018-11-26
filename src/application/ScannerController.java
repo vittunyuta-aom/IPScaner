@@ -1,33 +1,26 @@
 package application;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import scanners.Scanner;
+
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class ScannerController extends TimerTask implements Initializable{
 	
-	private static Scanner scanner = Scanner.instance();
+	private Scanner scanner = Scanner.instance();
     private Timer timer = new Timer();
 	private boolean isScanning = false;
 	
@@ -83,8 +76,7 @@ public class ScannerController extends TimerTask implements Initializable{
          if(!isScanning){
              isScanning = true;
              timer.schedule(this, 0,5000);
-//             timeStart.setText("12.22");
-             timeStart.setText(scanner.getScannedTime().get(0));
+             timeStart.setText(new SimpleDateFormat("HH:mm:ss").format(new Date()));
          }
          else
              System.err.println("scanners.Scanner is scanning");
