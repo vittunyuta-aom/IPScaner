@@ -1,7 +1,12 @@
+<<<<<<< HEAD:src/ScannerController.java
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+=======
+package gui;
+
+>>>>>>> 58a63d56729acec0fdc07569805d976ad6730695:src/gui/ScannerController.java
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
@@ -11,7 +16,15 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+<<<<<<< HEAD:src/ScannerController.java
 public class ScannerController implements Initializable{
+=======
+
+public class ScannerController {
+>>>>>>> 58a63d56729acec0fdc07569805d976ad6730695:src/gui/ScannerController.java
+
+    public ScannerController(){
+    }
 
 	@FXML
     private Button localDeviceButton;

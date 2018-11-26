@@ -1,4 +1,4 @@
-# IP Scanner
+# IP scanners.Scanner
 
 **Author**
 
