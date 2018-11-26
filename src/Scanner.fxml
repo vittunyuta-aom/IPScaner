@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -10,93 +11,128 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="440.0" prefWidth="749.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="ScannerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScannerController">
    <children>
-      <AnchorPane prefHeight="440.0" prefWidth="78.0" style="-fx-background-color: #fff;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="110.0" style="-fx-background-color: #fff;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <Button fx:id="localDeviceButton" layoutX="-2.0" mnemonicParsing="false" onAction="#LocalDevicesPage" prefHeight="220.0" prefWidth="94.0" style="-fx-background-color: #19A5A0;" />
-            <ImageView fitHeight="74.0" fitWidth="56.0" layoutX="17.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/local.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="ConnectedButton" layoutX="-2.0" layoutY="220.0" mnemonicParsing="false" onAction="#ConnectedPage" prefHeight="220.0" prefWidth="94.0" style="-fx-background-color: #19A5A0;" />
-            <ImageView fitHeight="74.0" fitWidth="56.0" layoutX="18.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/connected.png" />
-               </image>
-            </ImageView>
+            <Button fx:id="localDeviceButton" mnemonicParsing="false" onAction="#LocalDevicesPage" prefHeight="314.0" prefWidth="110.0" style="-fx-background-color: #19A5A0;">
+               <graphic>
+                  <ImageView fitHeight="74.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/local.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="timeButton" layoutY="308.0" mnemonicParsing="false" onAction="#TimePage" prefHeight="300.0" prefWidth="110.0" style="-fx-background-color: #19A5A0;">
+               <graphic>
+                  <ImageView fitHeight="74.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/connected.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="localPane" layoutX="92.0" prefHeight="440.0" prefWidth="657.0" style="-fx-background-color: #fff;">
+      <AnchorPane fx:id="localPane" layoutX="111.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="690.0" style="-fx-background-color: #fff;">
          <children>
-            <Text fill="#19a5a0" fontSmoothingType="LCD" layoutX="40.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Local Devices" wrappingWidth="199.7366943359375">
+            <Text fill="#19a5a0" fontSmoothingType="LCD" layoutX="40.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Local Devices" wrappingWidth="199.7366943359375">
                <font>
                   <Font size="27.0" />
                </font>
             </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="40.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP addresses" wrappingWidth="133.336668133452">
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="40.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP addresses" wrappingWidth="120.00005679293281">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="187.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mac addresses" wrappingWidth="120.00005908390813">
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="167.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mac addresses" wrappingWidth="120.00005908390813">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="355.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" wrappingWidth="107.20001025578313">
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="316.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" wrappingWidth="71.20007245881425">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="480.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last seen" wrappingWidth="71.20007129093938">
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="519.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last seen" wrappingWidth="89.60003654280263">
                <font>
-                  <Font size="16.0" />
+                  <Font size="18.0" />
                </font>
             </Text>
-            <Line endX="490.0" layoutX="141.0" layoutY="188.0" startX="-100.0" stroke="#948f8f" strokeWidth="2.0" />
-            <Button fx:id="scanButton" layoutX="40.0" layoutY="105.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #fff; -fx-border-color: #19A5A0; -fx-border-width: 2;" text="Start / Stop">
+            <Line endX="500.0" layoutX="141.0" layoutY="188.0" startX="-100.0" stroke="#948f8f" strokeWidth="2.0" />
+            <Button fx:id="startButton" layoutX="40.0" layoutY="92.0" mnemonicParsing="false" onAction="#Start" prefHeight="36.0" prefWidth="82.0" style="-fx-background-color: #fff; -fx-border-color: #19A5A0; -fx-border-width: 3;" text="Start" textFill="#19a5a0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="stopButton" layoutX="140.0" layoutY="92.0" mnemonicParsing="false" onAction="#Stop" prefHeight="36.0" prefWidth="82.0" style="-fx-background-color: #fff; -fx-border-color: #19A5A0; -fx-border-width: 3;" text="Stop" textFill="#19a5a0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fx:id="timeStart" fill="#a0a9a9" fontSmoothingType="LCD" layoutX="251.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time start" textAlignment="CENTER" wrappingWidth="161.336669921875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text fx:id="timeStop" fill="#a0a9a9" fontSmoothingType="LCD" layoutX="460.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time stop" textAlignment="CENTER" wrappingWidth="161.336669921875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#a0a9a9" fontSmoothingType="LCD" layoutX="414.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" textAlignment="CENTER" wrappingWidth="42.136688232421875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="409.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First seen" wrappingWidth="89.60003466984563">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button fx:id="resetButton" layoutX="593.0" layoutY="561.0" mnemonicParsing="false" onAction="#Reset" prefHeight="36.0" prefWidth="82.0" style="-fx-background-color: #19a5a0; -fx-border-color: #19A5A0; -fx-border-width: 3;" text="Reset" textFill="WHITE">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="connectedPane" layoutX="92.0" prefHeight="440.0" prefWidth="657.0" style="-fx-background-color: #fff;" visible="false">
+      <AnchorPane fx:id="timePane" layoutX="110.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="690.0" style="-fx-background-color: #fff;" visible="false">
          <children>
-            <Text fill="#19a5a0" fontSmoothingType="LCD" layoutX="40.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connected" wrappingWidth="133.336669921875">
+            <Text fill="#19a5a0" fontSmoothingType="LCD" layoutX="40.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Analysis Chart" wrappingWidth="284.53668212890625">
                <font>
                   <Font size="27.0" />
-               </font>
-            </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="40.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" wrappingWidth="133.336669921875">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="40.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" wrappingWidth="133.336669921875">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="39.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Speed" wrappingWidth="133.336669921875">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="39.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP address" wrappingWidth="133.336669921875">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="39.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity" wrappingWidth="133.336669921875">
-               <font>
-                  <Font size="16.0" />
                </font>
             </Text>
          </children>
