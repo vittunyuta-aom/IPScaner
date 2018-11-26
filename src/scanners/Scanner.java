@@ -1,5 +1,7 @@
 package scanners;
 
+import gui.ScannerController;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,13 +9,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Scanner extends TimerTask {
+public class Scanner extends TimerTask{
     private static List<String> scannedTime = new ArrayList<String>();
     private static List<ScannedDevice> reachableAddresses = new ArrayList<ScannedDevice>();
     private final DateFormat TIMEFORMAT = new SimpleDateFormat("HH:mm:ss");
     private Timer timer = new Timer();
     private boolean isScanning = false;
     private static Scanner scanner = new Scanner();
+    private ScannerController gui = new ScannerController();
 
     private Scanner(){}
 
@@ -25,7 +28,7 @@ public class Scanner extends TimerTask {
         System.out.println(isScanning);
         if(!isScanning){
             isScanning = true;
-            timer.schedule(this, 0,5000);
+            timer.schedule(scanner, 0,5000);
         }
         else
             System.err.println("scanners.Scanner is scanning");
@@ -72,6 +75,7 @@ public class Scanner extends TimerTask {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+//        gui.showInTable(reachableAddresses);
         return reachableAddresses;
     }
 
@@ -111,4 +115,5 @@ public class Scanner extends TimerTask {
     public static List<ScannedDevice> getReachableAddresses() {
         return reachableAddresses;
     }
+
 }
