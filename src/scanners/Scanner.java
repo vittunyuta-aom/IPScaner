@@ -31,7 +31,7 @@ public class Scanner{
         scannedTime.add(TIMEFORMAT.format(currentTimeScan));
 
         try {
-            Process proc = Runtime.getRuntime().exec("arp -a ");
+            Process proc = Runtime.getRuntime().exec("arp -a");
 
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));

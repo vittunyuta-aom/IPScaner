@@ -27,7 +27,7 @@ import scanners.Scanner;
 
 public class ScannerController extends TimerTask implements Initializable{
 	
-	private Scanner scanner = Scanner.instance();
+	private static Scanner scanner = Scanner.instance();
     private Timer timer = new Timer();
 	private boolean isScanning = false;
 	
@@ -80,15 +80,16 @@ public class ScannerController extends TimerTask implements Initializable{
     public void Start(ActionEvent event){
     	
 //    	 System.out.println(isScanning);
-//         if(!isScanning){
-//             isScanning = true;
-//             timer.schedule(this, 0,5000);
-//             timeStart.setText(scanner.getScannedTime().get(0));
-//         }
-//         else
-//             System.err.println("scanners.Scanner is scanning");
+         if(!isScanning){
+             isScanning = true;
+             timer.schedule(this, 0,5000);
+//             timeStart.setText("12.22");
+             timeStart.setText(scanner.getScannedTime().get(0));
+         }
+         else
+             System.err.println("scanners.Scanner is scanning");
          
-    	timeStart.setText("12.22");
+    	
     	
 //    	List<DataTable> listPlayer = new ArrayList<DataTable>(data.pullAllUserdata());
 //		VBox vBox = new VBox(listPlayer.size());
@@ -120,7 +121,8 @@ public class ScannerController extends TimerTask implements Initializable{
     
     public void Reset(ActionEvent event){
     	timeStart.setText("Time Start");
-    	timeStop.setText("Time Stop");    	
+    	timeStop.setText("Time Stop");
+    	timer.cancel();
     	
     }
 
