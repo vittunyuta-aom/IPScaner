@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Scanner{
-    private static Map<String, Integer> scannedTime = new HashMap<>();
+    private static Map<String, Integer> scannedTime = new HashMap<String, Integer>();
     private static List<ScannedDevice> reachableAddresses = new ArrayList<ScannedDevice>();
     private final DateFormat TIMEFORMAT = new SimpleDateFormat("HH:mm:ss");
     
@@ -108,7 +108,7 @@ public class Scanner{
 
     public void reset(){
         reachableAddresses = new ArrayList<ScannedDevice>();
-        scannedTime = new HashMap<>();
+        scannedTime = new HashMap<String, Integer>();
     }
 
 }

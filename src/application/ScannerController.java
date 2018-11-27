@@ -46,7 +46,7 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 public class ScannerController extends TimerTask implements Initializable{
 	
 	private Scanner scanner = Scanner.instance();
-    private Timer timer = new Timer();
+    private Timer timer;
 	private boolean isScanning = false;
 	private List<ScannedDevice> listIP;
 
@@ -60,7 +60,16 @@ public class ScannerController extends TimerTask implements Initializable{
     private Text timeStart;
 
     @FXML
-    private Text timeStop;    
+    private Text timeStop;
+
+	@FXML
+	private Button stopButton;
+
+	@FXML
+	private Button startButton;
+
+	@FXML
+	private Button resetButton;
 
 	@FXML
 	private HBox hBoxData;
@@ -94,7 +103,9 @@ public class ScannerController extends TimerTask implements Initializable{
 	}
     
     public void Start(ActionEvent event){
-    	
+		System.out.println("Start");
+		timer = new Timer();
+    	stopButton.setDisable(false);
          if(!isScanning){
              isScanning = true;
              timer.schedule(this, 0,5000);
@@ -105,6 +116,7 @@ public class ScannerController extends TimerTask implements Initializable{
     	}
     
     public void Stop(ActionEvent event){
+		System.out.println("Stop");
     	timeStop.setText(new SimpleDateFormat("HH:mm:ss").format(new Date()));
     	isScanning = false;
         timer.cancel();
@@ -112,19 +124,20 @@ public class ScannerController extends TimerTask implements Initializable{
     }
     
     public void Reset(ActionEvent event){
+		stopButton.setDisable(true);
     	timeStart.setText("Time Start");
     	timeStop.setText("Time Stop");
-    	timer.cancel();
-    	ipBox.getItems().clear();
-    	macBox.getItems().clear();
-    	durationBox.getItems().clear();
-    	firstBox.getItems().clear();
-    	lastBox.getItems().clear();
+//    	timer.cancel();
+    	resetTable();
     	
     }
     
     public void resetTable(){
-    	
+		ipBox.getItems().clear();
+		macBox.getItems().clear();
+		durationBox.getItems().clear();
+		firstBox.getItems().clear();
+		lastBox.getItems().clear();
     }
     
     public void analyze(ActionEvent event){
@@ -141,7 +154,7 @@ public class ScannerController extends TimerTask implements Initializable{
     	for(int i = 0; i< timeAndNumber.size(); i++){
     		String key = timeKey.get(i);
     		System.out.println(key + " -> " + timeAndNumber.get(key) );
-    		series.getData().add(new XYChart.Data<>(key, timeAndNumber.get(key)));
+    		series.getData().add(new XYChart.Data<String, Integer>(key, timeAndNumber.get(key)));
     	}
     	 
     }
@@ -150,7 +163,7 @@ public class ScannerController extends TimerTask implements Initializable{
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		stopButton.setDisable(true);
 	}
 
 
@@ -165,7 +178,7 @@ public class ScannerController extends TimerTask implements Initializable{
     	Platform.runLater(new Runnable() {
     	    @Override
     	    public void run() {
-    	    	
+    	    	resetTable();
     	    	for(ScannedDevice listData : listIP){
     	    		ipBox.getItems().add(listData.getIpAddress());
         	    	macBox.getItems().add(listData.getMacAddress());
