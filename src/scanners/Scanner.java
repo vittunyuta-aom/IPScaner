@@ -7,10 +7,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Scanner{
-    private static List<String> scannedTime = new ArrayList<String>();
+    private static Map<String, Integer> scannedTime = new HashMap<>();
     private static List<ScannedDevice> reachableAddresses = new ArrayList<ScannedDevice>();
     private final DateFormat TIMEFORMAT = new SimpleDateFormat("HH:mm:ss");
     
@@ -21,24 +23,24 @@ public class Scanner{
     public static Scanner instance(){
         return scanner;
     }
-    public static List<String> getScannedTime() {
+    public Map<String, Integer> getScannedTime() {
 		return scannedTime;
 	}
 
     public List<ScannedDevice> mockscan() {
         Date now = new Date();
-        scannedTime.add(TIMEFORMAT.format(now));
+        
     	int index = containsIpWithIndex("12.0.3.45");
         if (index == -1)
         	reachableAddresses.add(new ScannedDevice("12.0.3.45", "as:sd:df:fg:gh:gg", now));
         else
             reachableAddresses.get(index).updateData(now);
+        scannedTime.put(TIMEFORMAT.format(now),reachableAddresses.size());
     	return reachableAddresses;
     }
     
     public List<ScannedDevice> scan() {
         Date currentTimeScan = new Date();
-        scannedTime.add(TIMEFORMAT.format(currentTimeScan));
 
         try {
             Process proc = Runtime.getRuntime().exec("arp -a");
@@ -65,6 +67,9 @@ public class Scanner{
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        
+        scannedTime.put(TIMEFORMAT.format(currentTimeScan),reachableAddresses.size());
+
         return reachableAddresses;
     }
 
@@ -103,7 +108,7 @@ public class Scanner{
 
     public void reset(){
         reachableAddresses = new ArrayList<ScannedDevice>();
-        scannedTime = new ArrayList<String>();
+        scannedTime = new HashMap<>();
     }
 
 }

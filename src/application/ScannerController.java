@@ -7,7 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.chart.XYChart;
@@ -32,9 +35,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 
 public class ScannerController extends TimerTask implements Initializable{
@@ -42,7 +48,7 @@ public class ScannerController extends TimerTask implements Initializable{
 	private Scanner scanner = Scanner.instance();
     private Timer timer = new Timer();
 	private boolean isScanning = false;
-	private List<ScannedDevice> listIP = scanner.mockscan();
+	private List<ScannedDevice> listIP;
 
     @FXML
     private AnchorPane localPane;
@@ -75,11 +81,7 @@ public class ScannerController extends TimerTask implements Initializable{
 	private ListView<String> firstBox;
 	
 	@FXML
-	private ListView<String> lastBox;
-	
-	@FXML
-	private PieChart pieChart;
-	    
+	private ListView<String> lastBox;	    
     
     public void LocalDevicesPage(ActionEvent event) {
 		localPane.setVisible(true);
@@ -103,7 +105,6 @@ public class ScannerController extends TimerTask implements Initializable{
     	}
     
     public void Stop(ActionEvent event){
-//    	timeStop.setText("14.30");
     	timeStop.setText(new SimpleDateFormat("HH:mm:ss").format(new Date()));
     	isScanning = false;
         timer.cancel();
@@ -122,12 +123,27 @@ public class ScannerController extends TimerTask implements Initializable{
     	
     }
     
+    public void resetTable(){
+    	
+    }
+    
     public void analyze(ActionEvent event){
-    	   	ObservableList<Data> listData = FXCollections.observableArrayList(
-    	   			new PieChart.Data(listIP.get(0).getLastTimeSeen(), 80),
-    	   			new PieChart.Data("", 80)
-    	   			);
-    	   	pieChart.setData(listData);
+    	CategoryAxis xAxis = new CategoryAxis();
+    	xAxis.setLabel("Last seen");
+    	NumberAxis yAxis = new NumberAxis();
+    	yAxis.setLabel("IP addresses");
+    	
+    	BarChart barChart = new BarChart(xAxis, yAxis);
+    	XYChart.Series series = new XYChart.Series();
+    	
+    	Map<String, Integer> timeAndNumber = scanner.getScannedTime();
+    	List<String> timeKey = new ArrayList<String>(timeAndNumber.keySet());
+    	for(int i = 0; i< timeAndNumber.size(); i++){
+    		String key = timeKey.get(i);
+    		System.out.println(key + " -> " + timeAndNumber.get(key) );
+    		series.getData().add(new XYChart.Data<>(key, timeAndNumber.get(key)));
+    	}
+    	 
     }
 
     
@@ -142,16 +158,22 @@ public class ScannerController extends TimerTask implements Initializable{
     public void run() {
 //        scanner.scan();
     	
+    	listIP = scanner.mockscan();
+    	
     	System.out.println(Arrays.toString(listIP.toArray()));    	
     	
     	Platform.runLater(new Runnable() {
     	    @Override
     	    public void run() {
-    	    	ipBox.getItems().add(listIP.get(0).getIpAddress());
-    	    	macBox.getItems().add(listIP.get(0).getMacAddress());
-    	    	durationBox.getItems().add(listIP.get(0).getDuration());
-    	    	firstBox.getItems().add(listIP.get(0).getFirstTimeSeen());
-    	    	lastBox.getItems().add(listIP.get(0).getLastTimeSeen());
+    	    	
+    	    	for(ScannedDevice listData : listIP){
+    	    		ipBox.getItems().add(listData.getIpAddress());
+        	    	macBox.getItems().add(listData.getMacAddress());
+        	    	durationBox.getItems().add(listData.getDuration());
+        	    	firstBox.getItems().add(listData.getFirstTimeSeen());
+        	    	lastBox.getItems().add(listData.getLastTimeSeen());
+    	    	}
+    	    	
     	    }
     	});    	
     	
