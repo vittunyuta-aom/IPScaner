@@ -74,6 +74,9 @@ public class ScannerController implements Initializable{
 	
 	@FXML
 	private BarChart<String,Integer> barChart;
+	
+	@FXML
+	private BarChart<String,Integer> barChart2;
     
     public void LocalDevicesPage(ActionEvent event) {
 		localPane.setVisible(true);
@@ -89,6 +92,7 @@ public class ScannerController implements Initializable{
 		System.out.println("Start");
 		reTextTime();
 		barChart.getData().clear();
+		barChart2.getData().clear();
     	stopButton.setDisable(false);
     	analyzeButton.setDisable(true);
     	scanner.resetTimeList();
@@ -140,6 +144,7 @@ public class ScannerController implements Initializable{
     	}
     	System.out.println("analyze");
 		barChart.getData().clear();
+		barChart2.getData().clear();
 
     	XYChart.Series<String,Integer> series = new XYChart.Series<String,Integer>();    	
     	Map<String, Integer> timeAndNumber = scanner.getScannedTime();
@@ -153,16 +158,14 @@ public class ScannerController implements Initializable{
     	barChart.getData().addAll(series);
 
         // IP vs Duration
-//        XYChart.Series<String,Integer> series2 = new XYChart.Series<String,Integer>();
-//        for(int i = 0; i< listIP.size(); i++){
-//            ScannedDevice scd = listIP.get(i);
-//            int duration = (int) scd.getDuration();
-//            System.out.println(scd.getIpAddress() + " -> " + duration );
-//            series.getData().add(new XYChart.Data<String, Integer>(scd.getIpAddress(), duration));
-//        }
-//        barChart.getData().addAll(series2);
-
-
+        XYChart.Series<String,Integer> series2 = new XYChart.Series<String,Integer>();
+        for(int i = 0; i< listIP.size(); i++){
+            ScannedDevice scd = listIP.get(i);
+            int duration = (int) scd.getDuration();
+            System.out.println(scd.getIpAddress() + " -> " + duration );
+            series2.getData().add(new XYChart.Data<String, Integer>(scd.getIpAddress(), duration));
+        }
+        barChart2.getData().addAll(series2);
 
     }
 
