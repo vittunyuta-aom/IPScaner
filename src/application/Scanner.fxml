@@ -2,12 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -46,34 +49,34 @@
                </cursor></Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="localPane" layoutX="111.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="690.0" style="-fx-background-color: #fff;">
+      <AnchorPane fx:id="localPane" layoutX="111.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="690.0" style="-fx-background-color: #fff;" visible="false">
          <children>
             <Text fill="#19a5a0" fontSmoothingType="LCD" layoutX="40.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Local Devices" wrappingWidth="199.7366943359375">
                <font>
-                  <Font size="27.0" />
+                  <Font name="System Bold" size="27.0" />
                </font>
             </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="40.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP addresses" wrappingWidth="120.00005679293281">
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="47.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP addresses" wrappingWidth="101.60004763765937">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="165.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mac addresses" wrappingWidth="133.8778927849155">
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="179.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mac addresses" wrappingWidth="120.0000677020289">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="314.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" wrappingWidth="82.04601972443925">
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="332.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" wrappingWidth="82.04601972443925">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="521.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last seen" wrappingWidth="89.60003654280263">
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="548.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last seen" wrappingWidth="89.60003654280263">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Line endX="500.0" layoutX="141.0" layoutY="188.0" startX="-100.0" stroke="#948f8f" strokeWidth="2.0" />
+            <Line endX="540.0" layoutX="127.0" layoutY="188.0" startX="-100.0" stroke="#948f8f" strokeWidth="2.0" />
             <Button fx:id="startButton" layoutX="40.0" layoutY="92.0" mnemonicParsing="false" onAction="#Start" prefHeight="36.0" prefWidth="82.0" style="-fx-background-color: #fff; -fx-border-color: #19A5A0; -fx-border-width: 3;" text="Start" textFill="#19a5a0">
                <opaqueInsets>
                   <Insets />
@@ -111,7 +114,7 @@
                   <Font size="15.0" />
                </font>
             </Text>
-            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="411.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First seen" wrappingWidth="89.60003466984563">
+            <Text fill="#e7b00b" fontSmoothingType="LCD" layoutX="435.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First seen" wrappingWidth="89.60003466984563">
                <font>
                   <Font size="18.0" />
                </font>
@@ -127,20 +130,44 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <AnchorPane fx:id="data" layoutX="40.0" layoutY="206.0" prefHeight="348.0" prefWidth="602.0" style="-fx-background-color: #19A5A0;">
+            <AnchorPane fx:id="data" layoutX="26.0" layoutY="206.0" prefHeight="347.0" prefWidth="642.0" style="-fx-background-color: #19A5A0;">
                <children>
-                  <VBox fx:id="vBoxScore" layoutX="14.0" layoutY="14.0" prefHeight="169.0" prefWidth="555.0" />
+                  <ScrollPane fx:id="scroll" layoutX="14.0" layoutY="10.0" prefHeight="325.0" prefWidth="622.0">
+                     <content>
+                        <HBox fx:id="hBoxData" prefHeight="326.0" prefWidth="626.0">
+                           <children>
+                              <ListView fx:id="ipBox" prefHeight="326.0" prefWidth="129.0" />
+                              <ListView fx:id="macBox" prefHeight="326.0" prefWidth="157.0" />
+                              <ListView fx:id="durationBox" prefHeight="326.0" prefWidth="106.0" />
+                              <ListView fx:id="firstBox" prefHeight="326.0" prefWidth="117.0" />
+                              <ListView fx:id="lastBox" prefHeight="326.0" prefWidth="136.0" />
+                           </children>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="timePane" layoutX="110.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="690.0" style="-fx-background-color: #fff;" visible="false">
+      <AnchorPane fx:id="timePane" layoutX="110.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="690.0" style="-fx-background-color: #fff;">
          <children>
             <Text fill="#19a5a0" fontSmoothingType="LCD" layoutX="40.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Analysis Chart" wrappingWidth="284.53668212890625">
                <font>
-                  <Font size="27.0" />
+                  <Font name="System Bold" size="27.0" />
                </font>
             </Text>
+            <Button fx:id="analyzeButton" layoutX="593.0" layoutY="561.0" mnemonicParsing="false" onAction="#analyze" prefHeight="36.0" prefWidth="82.0" style="-fx-background-color: #19a5a0; -fx-border-color: #19A5A0; -fx-border-width: 3;" text="Analyze" textFill="WHITE">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <PieChart fx:id="pieChart" layoutX="95.0" layoutY="115.0" />
          </children>
       </AnchorPane>
    </children>

@@ -16,6 +16,7 @@ public class MainApplication extends Application{
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
+			primaryStage.setTitle("IP Scanner");
 			primaryStage.show();
 			
 		} catch (Exception e) {
