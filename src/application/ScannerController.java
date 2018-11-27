@@ -43,6 +43,9 @@ public class ScannerController implements Initializable{
 
 	@FXML
 	private Button stopButton;
+	
+	@FXML
+	private Button analyzeButton;
 
 	@FXML
 	private Button startButton;
@@ -69,7 +72,10 @@ public class ScannerController implements Initializable{
 	private ListView<String> firstBox;
 	
 	@FXML
-	private ListView<String> lastBox;	    
+	private ListView<String> lastBox;
+	
+	@FXML
+	private BarChart<String,Integer> barChart;
     
     public void LocalDevicesPage(ActionEvent event) {
 		localPane.setVisible(true);
@@ -83,7 +89,10 @@ public class ScannerController implements Initializable{
     
     public void Start(ActionEvent event){
 		System.out.println("Start");
+		barChart.getData().clear();
     	stopButton.setDisable(false);
+    	analyzeButton.setDisable(true);
+    	scanner.resetTimeList();
     	 timer = new Timer();
          if(!isScanning){
              isScanning = true;
@@ -100,13 +109,15 @@ public class ScannerController implements Initializable{
     	isScanning = false;
         timer.cancel();
         timer.purge();
+        scanner.resetAddressList();
+        analyzeButton.setDisable(false);
     }
     
     public void Reset(ActionEvent event){
 		stopButton.setDisable(true);
+		Stop(event);
     	timeStart.setText("Time Start");
     	timeStop.setText("Time Stop");
-//    	timer.cancel();
     	resetTable();
     	
     }
@@ -120,21 +131,29 @@ public class ScannerController implements Initializable{
     }
     
     public void analyze(ActionEvent event){
-    	CategoryAxis xAxis = new CategoryAxis();
-    	xAxis.setLabel("Last seen");
-    	NumberAxis yAxis = new NumberAxis();
-    	yAxis.setLabel("IP addresses");
-    	
-    	BarChart barChart = new BarChart(xAxis, yAxis);
-    	XYChart.Series series = new XYChart.Series();
+    	if(isScanning){
+    		analyzeButton.setDisable(true);
+    		System.out.println("disable");
+    	}
+    	System.out.println("analyze");
+//    	CategoryAxis xAxis = new CategoryAxis();
+//    	xAxis.setLabel("Last seen");
+//    	NumberAxis yAxis = new NumberAxis();
+//    	yAxis.setLabel("IP addresses");
+    	XYChart.Series<String,Integer> series = new XYChart.Series<String,Integer>();
     	
     	Map<String, Integer> timeAndNumber = scanner.getScannedTime();
     	List<String> timeKey = new ArrayList<String>(timeAndNumber.keySet());
+    	System.out.println(timeAndNumber.size());
     	for(int i = 0; i< timeAndNumber.size(); i++){
     		String key = timeKey.get(i);
     		System.out.println(key + " -> " + timeAndNumber.get(key) );
     		series.getData().add(new XYChart.Data<String, Integer>(key, timeAndNumber.get(key)));
     	}
+    	barChart.getData().addAll(series);
+    	
+//    	barChart = new BarChart<String,Integer>(xAxis, yAxis);
+    	
     	 
     }
 
@@ -143,6 +162,8 @@ public class ScannerController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		stopButton.setDisable(true);
+		analyzeButton.setDisable(true);
+		
 	}
 
 	class myTimerTask extends TimerTask{

@@ -36,6 +36,7 @@ public class Scanner{
         else
             reachableAddresses.get(index).updateData(now);
         scannedTime.put(TIMEFORMAT.format(now),reachableAddresses.size());
+        System.out.println(scannedTime.size());
     	return reachableAddresses;
     }
     
@@ -106,8 +107,11 @@ public class Scanner{
         return -1;
     }
 
-    public void reset(){
+    public void resetAddressList(){
         reachableAddresses = new ArrayList<ScannedDevice>();
+    }
+
+    public void resetTimeList(){
         scannedTime = new HashMap<String, Integer>();
     }
 
