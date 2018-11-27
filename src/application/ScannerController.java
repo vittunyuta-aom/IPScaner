@@ -1,49 +1,28 @@
 package application;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.PieChart.Data;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import jdk.internal.org.objectweb.asm.tree.analysis.Analyzer;
 import scanners.ScannedDevice;
 import scanners.Scanner;
 
 import java.net.URL;
-import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
+import java.util.*;
 
 
-public class ScannerController extends TimerTask implements Initializable{
+public class ScannerController implements Initializable{
 	
 	private Scanner scanner = Scanner.instance();
     private Timer timer;
@@ -104,11 +83,11 @@ public class ScannerController extends TimerTask implements Initializable{
     
     public void Start(ActionEvent event){
 		System.out.println("Start");
-		timer = new Timer();
     	stopButton.setDisable(false);
+    	 timer = new Timer();
          if(!isScanning){
              isScanning = true;
-             timer.schedule(this, 0,5000);
+             timer.schedule(new myTimerTask(), 0,5000);
              timeStart.setText(new SimpleDateFormat("HH:mm:ss").format(new Date()));         	
          }
          else
@@ -166,32 +145,32 @@ public class ScannerController extends TimerTask implements Initializable{
 		stopButton.setDisable(true);
 	}
 
-
-    @Override
-    public void run() {
+	class myTimerTask extends TimerTask{
+		@Override
+		public void run() {
 //        scanner.scan();
-    	
-    	listIP = scanner.mockscan();
-    	
-    	System.out.println(Arrays.toString(listIP.toArray()));    	
-    	
-    	Platform.runLater(new Runnable() {
-    	    @Override
-    	    public void run() {
-    	    	resetTable();
-    	    	for(ScannedDevice listData : listIP){
-    	    		ipBox.getItems().add(listData.getIpAddress());
-        	    	macBox.getItems().add(listData.getMacAddress());
-        	    	durationBox.getItems().add(listData.getDuration());
-        	    	firstBox.getItems().add(listData.getFirstTimeSeen());
-        	    	lastBox.getItems().add(listData.getLastTimeSeen());
-    	    	}
-    	    	
-    	    }
-    	});    	
-    	
-        System.out.println("-------------------------------");
-    }
-	
+
+			listIP = scanner.mockscan();
+
+			System.out.println(Arrays.toString(listIP.toArray()));
+
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					resetTable();
+					for(ScannedDevice listData : listIP){
+						ipBox.getItems().add(listData.getIpAddress());
+						macBox.getItems().add(listData.getMacAddress());
+						durationBox.getItems().add(listData.getDuration());
+						firstBox.getItems().add(listData.getFirstTimeSeen());
+						lastBox.getItems().add(listData.getLastTimeSeen());
+					}
+
+				}
+			});
+
+			System.out.println("-------------------------------");
+		}
+	}
 	
 }
