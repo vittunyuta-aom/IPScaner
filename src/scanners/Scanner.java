@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import sun.security.x509.IPAddressName;
+
 public class Scanner{
     private static Map<String, Integer> scannedTime = new HashMap<String, Integer>();
     private static List<ScannedDevice> reachableAddresses = new ArrayList<ScannedDevice>();
@@ -44,28 +46,48 @@ public class Scanner{
         Date currentTimeScan = new Date();
 
         try {
+//        	ProcessBuilder builder = new ProcessBuilder(
+//                    "cmd.exe", "/c", "arp -a");
+//            builder.redirectErrorStream(true);
+//            Process proc = builder.start();
             Process proc = Runtime.getRuntime().exec("arp -a");
 
+//            Thread.sleep(5000);
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-
+            String err;
+            while ((err = stdError.readLine()) != null) {
+            	System.out.println(err);
+            }
             // read the output from the command
             String str;
             while ((str = stdInput.readLine()) != null) {
                 System.out.println(">>>>" + str);
-                String ip = findIpAddress(str);
+                
+             // Window
+                if (str.contains("Interface") || str.contains("Internet")) continue;
+                String ip = findIpAddressWin(str);
+                if(ip == null) continue;
                 int index = containsIpWithIndex(ip);
-                if (index == -1)
-                    reachableAddresses.add(new ScannedDevice(ip, findMacAddress(str), currentTimeScan));
-                else
-                    reachableAddresses.get(index).updateData(currentTimeScan);
+	            if (index == -1)
+	            	reachableAddresses.add(new ScannedDevice(ip, findMacAddressWin(str), currentTimeScan));
+	            else
+	                reachableAddresses.get(index).updateData(currentTimeScan);
+                
+                // Mac
+//                String ip = findIpAddress(str);
+//                int index = containsIpWithIndex(ip);
+//                if (index == -1)
+//                    reachableAddresses.add(new ScannedDevice(ip, findMacAddress(str), currentTimeScan));
+//                else
+//                    reachableAddresses.get(index).updateData(currentTimeScan);
 
                 // read any errors from the attempted command
                 while ((str = stdError.readLine()) != null) {
                     System.err.println(str);
                 }
             }
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         
@@ -83,8 +105,29 @@ public class Scanner{
 
     // IP Address
     private String findIpAddress(String str) {
+    	
         int startIpIndex = indexOfWord(str, "(") + 1;
         int stopIpIndex = indexOfWord(str, ")");
+        return str.substring(startIpIndex, stopIpIndex);
+    }
+    
+ // MAC Address
+    private String findMacAddressWin(String str) {
+        int startMacIndex =  24;
+        int stopMacIndex = 41;
+        return str.substring(startMacIndex, stopMacIndex);
+    }
+
+    // IP Address
+    private String findIpAddressWin(String str) {
+    	
+        int startIpIndex =  2;
+        int stopIpIndex = -1;
+        for (int i = 1; i <= 3; i++){
+        	stopIpIndex = str.indexOf(" ", stopIpIndex + 1);
+        }
+        if(stopIpIndex < 0 || startIpIndex > stopIpIndex)
+        	return null;
         return str.substring(startIpIndex, stopIpIndex);
     }
 

@@ -89,6 +89,7 @@ public class ScannerController implements Initializable{
     
     public void Start(ActionEvent event){
 		System.out.println("Start");
+		reTextTime();
 		barChart.getData().clear();
     	stopButton.setDisable(false);
     	analyzeButton.setDisable(true);
@@ -116,10 +117,14 @@ public class ScannerController implements Initializable{
     public void Reset(ActionEvent event){
 		stopButton.setDisable(true);
 		Stop(event);
-    	timeStart.setText("Time Start");
-    	timeStop.setText("Time Stop");
+    	reTextTime();
     	resetTable();
     	
+    }
+    
+    public void reTextTime(){
+    	timeStart.setText("Time Start");
+    	timeStop.setText("Time Stop");
     }
     
     public void resetTable(){
@@ -138,12 +143,7 @@ public class ScannerController implements Initializable{
     	System.out.println("analyze");
 		barChart.getData().clear();
 
-//    	CategoryAxis xAxis = new CategoryAxis();
-//    	xAxis.setLabel("Last seen");
-//    	NumberAxis yAxis = new NumberAxis();
-//    	yAxis.setLabel("IP addresses");
-    	XYChart.Series<String,Integer> series = new XYChart.Series<String,Integer>();
-    	
+    	XYChart.Series<String,Integer> series = new XYChart.Series<String,Integer>();    	
     	Map<String, Integer> timeAndNumber = scanner.getScannedTime();
     	List<String> timeKey = new ArrayList<String>(timeAndNumber.keySet());
     	System.out.println(timeAndNumber.size());
@@ -153,9 +153,6 @@ public class ScannerController implements Initializable{
     		series.getData().add(new XYChart.Data<String, Integer>(key, timeAndNumber.get(key)));
     	}
     	barChart.getData().addAll(series);
-    	
-//    	barChart = new BarChart<String,Integer>(xAxis, yAxis);
-    	
     	 
     }
 
@@ -171,9 +168,9 @@ public class ScannerController implements Initializable{
 	class myTimerTask extends TimerTask{
 		@Override
 		public void run() {
-//        scanner.scan();
+        listIP = scanner.scan();
 
-			listIP = scanner.mockscan();
+//			listIP = scanner.mockscan();
 
 			System.out.println(Arrays.toString(listIP.toArray()));
 
