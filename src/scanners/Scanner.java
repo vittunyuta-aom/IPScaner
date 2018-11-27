@@ -27,6 +27,7 @@ public class Scanner{
 
     public List<ScannedDevice> mockscan() {
         Date now = new Date();
+        scannedTime.add(TIMEFORMAT.format(now));
     	int index = containsIpWithIndex("12.0.3.45");
         if (index == -1)
         	reachableAddresses.add(new ScannedDevice("12.0.3.45", "as:sd:df:fg:gh:gg", now));

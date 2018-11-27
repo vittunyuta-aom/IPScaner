@@ -1,13 +1,27 @@
 package scanners;
 
-public class Main {
+import java.util.Arrays;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Main extends TimerTask {
+
+    private static Scanner sc;
+    private static Timer timer = new Timer();
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        Scanner sc = Scanner.instance();
-        sc.scan();
+        sc = Scanner.instance();
+        Main main = new Main();
+        timer.schedule(main, 0,5000);
         // schedule every 5 second
-//        sc.startScan();
-//        sc.stopScan();
+    }
+
+    @Override
+    public void run() {
+        List<ScannedDevice> list = sc.scan();
+        System.out.println(Arrays.toString(list.toArray()));
+        System.out.println("-------------------");
     }
 }
