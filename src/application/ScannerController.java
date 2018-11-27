@@ -136,6 +136,8 @@ public class ScannerController implements Initializable{
     		System.out.println("disable");
     	}
     	System.out.println("analyze");
+		barChart.getData().clear();
+
 //    	CategoryAxis xAxis = new CategoryAxis();
 //    	xAxis.setLabel("Last seen");
 //    	NumberAxis yAxis = new NumberAxis();
