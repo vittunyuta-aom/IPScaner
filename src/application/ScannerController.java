@@ -89,7 +89,6 @@ public class ScannerController implements Initializable{
 	}
     
     public void Start(ActionEvent event){
-		System.out.println("Start");
 		reTextTime();
 		barChart.getData().clear();
 		barChart2.getData().clear();
@@ -107,7 +106,6 @@ public class ScannerController implements Initializable{
     	}
     
     public void Stop(ActionEvent event){
-		System.out.println("Stop");
     	timeStop.setText(new SimpleDateFormat("HH:mm:ss").format(new Date()));
     	isScanning = false;
         timer.cancel();
@@ -140,12 +138,12 @@ public class ScannerController implements Initializable{
     public void analyze(ActionEvent event){
     	if(isScanning){
     		analyzeButton.setDisable(true);
-    		System.out.println("disable");
     	}
-    	System.out.println("analyze");
+    	
 		barChart.getData().clear();
 		barChart2.getData().clear();
-
+		
+		// IP vs Last seen
     	XYChart.Series<String,Integer> series = new XYChart.Series<String,Integer>();    	
     	Map<String, Integer> timeAndNumber = scanner.getScannedTime();
     	List<String> timeKey = new ArrayList<String>(timeAndNumber.keySet());
@@ -181,11 +179,9 @@ public class ScannerController implements Initializable{
 	class myTimerTask extends TimerTask{
 		@Override
 		public void run() {
-        listIP = scanner.scan();
+			listIP = scanner.scan();
 
-//			listIP = scanner.mockscan();
-
-			System.out.println(Arrays.toString(listIP.toArray()));
+//			System.out.println(Arrays.toString(listIP.toArray()));
 
 			Platform.runLater(new Runnable() {
 				@Override
@@ -202,7 +198,7 @@ public class ScannerController implements Initializable{
 				}
 			});
 
-			System.out.println("-------------------------------");
+//			System.out.println("-------------------------------");
 		}
 	}
 	
