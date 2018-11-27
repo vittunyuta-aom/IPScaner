@@ -1,20 +1,13 @@
 package scanners;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import sun.security.x509.IPAddressName;
+import java.util.*;
 
 public class Scanner{
-    private static Map<String, Integer> scannedTime = new HashMap<String, Integer>();
+    private static Map<String, Integer> scannedTime = new LinkedHashMap<String, Integer>();
     private static List<ScannedDevice> reachableAddresses = new ArrayList<ScannedDevice>();
     private final DateFormat TIMEFORMAT = new SimpleDateFormat("HH:mm:ss");
     
@@ -155,7 +148,7 @@ public class Scanner{
     }
 
     public void resetTimeList(){
-        scannedTime = new HashMap<String, Integer>();
+        scannedTime = new LinkedHashMap<String, Integer>();
     }
 
 }
