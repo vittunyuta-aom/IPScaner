@@ -108,7 +108,7 @@ public class ScannerController extends TimerTask implements Initializable{
     	stopButton.setDisable(false);
          if(!isScanning){
              isScanning = true;
-             timer.schedule(this, 0,5000);
+             timer.schedule(new ScannerController(), 0,5000);
              timeStart.setText(new SimpleDateFormat("HH:mm:ss").format(new Date()));         	
          }
          else
