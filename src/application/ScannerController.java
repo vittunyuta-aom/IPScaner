@@ -5,8 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -153,7 +151,19 @@ public class ScannerController implements Initializable{
     		series.getData().add(new XYChart.Data<String, Integer>(key, timeAndNumber.get(key)));
     	}
     	barChart.getData().addAll(series);
-    	 
+
+        // IP vs Duration
+//        XYChart.Series<String,Integer> series2 = new XYChart.Series<String,Integer>();
+//        for(int i = 0; i< listIP.size(); i++){
+//            ScannedDevice scd = listIP.get(i);
+//            int duration = (int) scd.getDuration();
+//            System.out.println(scd.getIpAddress() + " -> " + duration );
+//            series.getData().add(new XYChart.Data<String, Integer>(scd.getIpAddress(), duration));
+//        }
+//        barChart.getData().addAll(series2);
+
+
+
     }
 
     
