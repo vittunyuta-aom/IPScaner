@@ -16,22 +16,22 @@ public class ScannedDevice {
     private long duration;
 
 
-    public ScannedDevice(String ipAddress, String macAddress){
+    public ScannedDevice(String ipAddress, String macAddress, Date scannedTime){
         this.ipAddress = ipAddress;
         this.macAddress = macAddress;
-        this.firstSeen = new Date();
+        this.firstSeen = scannedTime;
         this.firstTimeSeen = TIMEFORMAT.format(firstSeen);
-        setLastSeenToNow();
+        setLastSeenToNow(scannedTime);
         this.duration = 0;
     }
 
-    public void updateData(){
-        setLastSeenToNow();
+    public void updateData(Date scannedTime){
+        setLastSeenToNow(scannedTime);
         calculateCurrentDuration();
     }
 
-    private void setLastSeenToNow(){
-        this.lastSeen = new Date();
+    private void setLastSeenToNow(Date scannedTime){
+        this.lastSeen = scannedTime;
         this.lastTimeSeen = TIMEFORMAT.format(lastSeen);
     }
 

@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
-
-import application.ScannerController;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Scanner{
     private static List<String> scannedTime = new ArrayList<String>();
@@ -26,11 +26,12 @@ public class Scanner{
 	}
 
     public List<ScannedDevice> mockscan() {
+        Date now = new Date();
     	int index = containsIpWithIndex("12.0.3.45");
         if (index == -1)
-        	reachableAddresses.add(new ScannedDevice("12.0.3.45", "as:sd:df:fg:gh:gg"));
+        	reachableAddresses.add(new ScannedDevice("12.0.3.45", "as:sd:df:fg:gh:gg", now));
         else
-            reachableAddresses.get(index).updateData();
+            reachableAddresses.get(index).updateData(now);
     	return reachableAddresses;
     }
     
@@ -51,9 +52,9 @@ public class Scanner{
                 String ip = findIpAddress(str);
                 int index = containsIpWithIndex(ip);
                 if (index == -1)
-                    reachableAddresses.add(new ScannedDevice(ip, findMacAddress(str)));
+                    reachableAddresses.add(new ScannedDevice(ip, findMacAddress(str), currentTimeScan));
                 else
-                    reachableAddresses.get(index).updateData();
+                    reachableAddresses.get(index).updateData(currentTimeScan);
 
                 // read any errors from the attempted command
                 while ((str = stdError.readLine()) != null) {
@@ -99,8 +100,9 @@ public class Scanner{
         return -1;
     }
 
-    public static List<ScannedDevice> getReachableAddresses() {
-        return reachableAddresses;
+    public void reset(){
+        reachableAddresses = new ArrayList<ScannedDevice>();
+        scannedTime = new ArrayList<String>();
     }
 
 }
