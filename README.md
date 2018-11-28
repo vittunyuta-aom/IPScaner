@@ -1,12 +1,19 @@
 # IP scanners.Scanner
 
-**Author**
+## Author
 
 - Vittunyuta Maeprasart 5910545019
 
 - Noppawan Kulchol 5910545728
 
 - Punapat Panpakdee 5910546660
+
+## **Tools and Language**
+1. Java language
+2. Intellij IDEA
+3. Eclipse
+4. JavaFx
+5. SceneBuilder
 
 ## **How to run**
 
