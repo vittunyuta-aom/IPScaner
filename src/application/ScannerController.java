@@ -94,6 +94,7 @@ public class ScannerController implements Initializable{
 		barChart2.getData().clear();
     	stopButton.setDisable(false);
     	analyzeButton.setDisable(true);
+    	resetButton.setDisable(false);
     	scanner.resetTimeList();
     	 timer = new Timer();
          if(!isScanning){
@@ -173,6 +174,7 @@ public class ScannerController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		stopButton.setDisable(true);
 		analyzeButton.setDisable(true);
+		resetButton.setDisable(true);
 		
 	}
 

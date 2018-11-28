@@ -51,7 +51,7 @@
                </cursor></Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="localPane" layoutX="111.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="690.0" style="-fx-background-color: #fff;" visible="false">
+      <AnchorPane fx:id="localPane" layoutX="111.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="690.0" style="-fx-background-color: #fff;">
          <children>
             <Text fill="#19a5a0" fontSmoothingType="LCD" layoutX="40.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Local Devices" wrappingWidth="199.7366943359375">
                <font>
@@ -151,7 +151,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="timePane" layoutX="110.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="690.0" style="-fx-background-color: #fff;">
+      <AnchorPane fx:id="timePane" layoutX="110.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="690.0" style="-fx-background-color: #fff;" visible="false">
          <children>
             <Text fill="#19a5a0" fontSmoothingType="LCD" layoutX="40.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Analysis Chart" wrappingWidth="284.53668212890625">
                <font>
@@ -191,7 +191,7 @@
                      </tickLabelFont></CategoryAxis>
                </xAxis>
                <yAxis>
-                  <NumberAxis Label="Duration" side="LEFT" tickLabelFill="WHITE" >
+                  <NumberAxis Label="Duration" side="LEFT" tickLabelFill="WHITE">
                 	<tickLabelFont>
                         <Font name="System Bold" size="15.0" />
                      </tickLabelFont></NumberAxis>
