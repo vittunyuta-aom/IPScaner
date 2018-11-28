@@ -2,3 +2,5 @@
 IPScaner.iml
 out/
 /bin/
+.classpath
+.projects
