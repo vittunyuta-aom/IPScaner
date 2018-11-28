@@ -90,19 +90,19 @@ public class Scanner{
     }
 
     // MAC Address
-    private String findMacAddress(String str) {
-        int startMacIndex = indexOfWord(str, "at") + 3;
-        int stopMacIndex = indexOfWord(str, "on");
-        return str.substring(startMacIndex, stopMacIndex);
-    }
-
-    // IP Address
-    private String findIpAddress(String str) {
-    	
-        int startIpIndex = indexOfWord(str, "(") + 1;
-        int stopIpIndex = indexOfWord(str, ")");
-        return str.substring(startIpIndex, stopIpIndex);
-    }
+//    private String findMacAddress(String str) {
+//        int startMacIndex = indexOfWord(str, "at") + 3;
+//        int stopMacIndex = indexOfWord(str, "on");
+//        return str.substring(startMacIndex, stopMacIndex);
+//    }
+//
+//    // IP Address
+//    private String findIpAddress(String str) {
+//    	
+//        int startIpIndex = indexOfWord(str, "(") + 1;
+//        int stopIpIndex = indexOfWord(str, ")");
+//        return str.substring(startIpIndex, stopIpIndex);
+//    }
     
  // MAC Address
     private String findMacAddressWin(String str) {
@@ -124,11 +124,11 @@ public class Scanner{
         return str.substring(startIpIndex, stopIpIndex);
     }
 
-    private int indexOfWord(String str, String needle) {
-        if (str.contains(needle)) return str.indexOf(needle);
-        System.out.println("not found " + needle);
-        return -1;
-    }
+//    private int indexOfWord(String str, String needle) {
+//        if (str.contains(needle)) return str.indexOf(needle);
+//        System.out.println("not found " + needle);
+//        return -1;
+//    }
 
     /**
      * @param ip is founded ip address

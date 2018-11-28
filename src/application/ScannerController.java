@@ -137,7 +137,8 @@ public class ScannerController implements Initializable{
 		lastBox.getItems().clear();
     }
     
-    public void analyze(ActionEvent event){
+    @SuppressWarnings("unchecked")
+	public void analyze(ActionEvent event){
     	if(isScanning){
     		analyzeButton.setDisable(true);
     	}
