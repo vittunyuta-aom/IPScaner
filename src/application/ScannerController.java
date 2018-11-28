@@ -120,7 +120,8 @@ public class ScannerController implements Initializable{
 		Stop(event);
     	reTextTime();
     	resetTable();
-    	
+    	barChart.getData().clear();
+		barChart2.getData().clear();
     }
     
     public void reTextTime(){
