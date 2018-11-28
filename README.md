@@ -1,4 +1,4 @@
-# IP scanners.Scanner
+# IP Scanner
 
 ## Author
 - Vittunyuta Maeprasart 5910545019
