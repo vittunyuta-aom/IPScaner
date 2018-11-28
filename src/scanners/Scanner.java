@@ -31,8 +31,8 @@ public class Scanner{
         else
             reachableAddresses.get(index).updateData(now);
         scannedTime.put(TIMEFORMAT.format(now),reachableAddresses.size());
-        System.out.println(scannedTime.size());
-    	return reachableAddresses;
+
+        return reachableAddresses;
     }
     
     public List<ScannedDevice> scan() {

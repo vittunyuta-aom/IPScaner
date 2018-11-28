@@ -149,10 +149,8 @@ public class ScannerController implements Initializable{
     	XYChart.Series<String,Integer> series = new XYChart.Series<String,Integer>();    	
     	Map<String, Integer> timeAndNumber = scanner.getScannedTime();
     	List<String> timeKey = new ArrayList<String>(timeAndNumber.keySet());
-    	System.out.println(timeAndNumber.size());
     	for(int i = 0; i< timeAndNumber.size(); i++){
     		String key = timeKey.get(i);
-    		System.out.println(key + " -> " + timeAndNumber.get(key) );
     		series.getData().add(new XYChart.Data<String, Integer>(key, timeAndNumber.get(key)));
     	}
     	barChart.getData().addAll(series);
@@ -162,7 +160,6 @@ public class ScannerController implements Initializable{
         for(int i = 0; i< listIP.size(); i++){
             ScannedDevice scd = listIP.get(i);
             int duration = (int) scd.getDuration();
-            System.out.println(scd.getIpAddress() + " -> " + duration );
             series2.getData().add(new XYChart.Data<String, Integer>(scd.getIpAddress(), duration));
         }
         barChart2.getData().addAll(series2);
@@ -183,9 +180,6 @@ public class ScannerController implements Initializable{
 		@Override
 		public void run() {
 			listIP = scanner.scan();
-
-//			System.out.println(Arrays.toString(listIP.toArray()));
-
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
@@ -197,11 +191,9 @@ public class ScannerController implements Initializable{
 						firstBox.getItems().add(listData.getFirstTimeSeen());
 						lastBox.getItems().add(listData.getLastTimeSeen());
 					}
-
 				}
 			});
 
-//			System.out.println("-------------------------------");
 		}
 	}
 	

@@ -11,7 +11,6 @@ public class Main extends TimerTask {
     private static Timer timer = new Timer();
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         sc = Scanner.instance();
         Main main = new Main();
         timer.schedule(main, 0,5000);
