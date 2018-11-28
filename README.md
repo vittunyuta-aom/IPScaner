@@ -14,6 +14,8 @@
 
 ## **How to run**
 
+**!!Run class MainApplication.java to run the program!!**
+
 ### **LocalDevices Page**
 
 This page use for scanning to find IP addresses in the same area.
