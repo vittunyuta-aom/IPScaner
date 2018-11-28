@@ -18,11 +18,11 @@
 
 This page use for scanning to find IP addresses in the same area.
 
-![alt text](https://github.com/aommoaGitHub/IPScaner/blob/master/screenshot/local1.jpg)
-
-### **Reset**
-
 ![alt text](https://github.com/aommoaGitHub/IPScaner/blob/master/screenshot/reset1.jpg)
+
+Start scanning and then stop scanning
+
+![alt text](https://github.com/aommoaGitHub/IPScaner/blob/master/screenshot/local1.jpg)
 
 ### **Analysis Page**
 
