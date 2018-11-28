@@ -90,8 +90,6 @@ public class ScannerController implements Initializable{
     
     public void Start(ActionEvent event){
 		reTextTime();
-		barChart.getData().clear();
-		barChart2.getData().clear();
     	stopButton.setDisable(false);
     	analyzeButton.setDisable(true);
     	resetButton.setDisable(false);
@@ -111,17 +109,17 @@ public class ScannerController implements Initializable{
     	isScanning = false;
         timer.cancel();
         timer.purge();
-        scanner.resetAddressList();
         analyzeButton.setDisable(false);
     }
     
     public void Reset(ActionEvent event){
-		stopButton.setDisable(true);
+    	stopButton.setDisable(true);
+        scanner.resetAddressList();
+        scanner.resetTimeList();
 		Stop(event);
-    	reTextTime();
+		analyzeButton.setDisable(true);
+		reTextTime();
     	resetTable();
-    	barChart.getData().clear();
-		barChart2.getData().clear();
     }
     
     public void reTextTime(){
@@ -130,6 +128,8 @@ public class ScannerController implements Initializable{
     }
     
     public void resetTable(){
+    	barChart.getData().clear();
+		barChart2.getData().clear();
 		ipBox.getItems().clear();
 		macBox.getItems().clear();
 		durationBox.getItems().clear();
