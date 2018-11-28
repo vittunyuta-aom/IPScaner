@@ -1,4 +1,5 @@
 # IP Scanner
+This is Realtime IP scanner which focus on all online devices in the same local network. The application has 2 main features. 1. A table for showing online devices in local network with IP address, Mac address, first time seen, last time seen, and duration 2. analysis charts 
 
 ## Author
 - Vittunyuta Maeprasart 5910545019
